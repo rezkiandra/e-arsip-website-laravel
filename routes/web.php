@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/login');
 Route::redirect('/register', '/login');
 Route::redirect('/dashboard', '/login');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/view-website/{website}', [HomeController::class, 'viewWebsite'])->name('view.website');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'signin'])->name('signin');
