@@ -8,9 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
-    <title>@yield('title')</title>
-    @stack('styles')
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
+    <title>@yield('title') - E-Arsip</title>
+    @stack('styles')
   </head>
 
   <body>
@@ -117,7 +117,7 @@
       </div>
     @else
       <div id="main-wrapper">
-        <div class="page-wrapper">
+        <div class="container-fluid">
           @yield('content')
         </div>
         <footer class="footer text-center text-muted border-top">

@@ -35,6 +35,9 @@
                   Login
                 </button>
               </div>
+              <div class="col-lg-12 text-center mt-5">
+                <a href="{{ route('home') }}" class="text-primary">Kembali ke Beranda</a>
+              </div>
             </div>
           </form>
         </div>

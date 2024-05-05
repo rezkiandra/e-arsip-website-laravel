@@ -54,7 +54,7 @@
       @foreach ($website as $data)
         <div class="col-sm-6 col-lg-4">
           <div class="card shadow shadow-lg" onclick="location.href='{{ route('admin.website.view', $data->slug) }}';">
-            <img class="text-center align-self-center img-fluid" src="{{ asset('storage/' . $data->logo) }}"
+            <img class="text-center align-self-center rounded-circle pt-4" width="200" src="{{ asset('storage/' . $data->logo) }}"
               alt="{{ $data->name }}">
             <div class="card-body">
               <h4 class="card-title text-capitalize height">{{ $data->name }}</h4>

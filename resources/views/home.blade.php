@@ -4,13 +4,14 @@
   <style>
     .card:hover {
       cursor: pointer;
-      transform: scale(.99);
-      transition: 0.1s;
+      transform: scale(.97);
+      transition: 0.5s;
     }
 
     .card {
-      transition: 0.1s;
+      transition: 0.5s;
     }
+
     .justify {
       text-align: justify;
     }
@@ -39,7 +40,7 @@
     </div>
   </div>
   <div class="container-fluid">
-    <div class="d-flex flex-column align-items-center justify-content-center gap-1 mb-3">
+    <div class="d-flex flex-column align-items-center justify-content-center gap-1 mb-4 mt-4">
       <span class="text-uppercase text-dark h3">Djar Dev Company</span>
       <div class="d-flex">
         <span class="text-dark text-uppercase h1">E-Arsip</span>
@@ -47,14 +48,14 @@
     </div>
     <div class="row">
       @foreach ($website as $data)
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6 col-lg-3 col-md-6">
           <div class="card shadow shadow-lg pointer">
             <img class="text-center align-self-center rounded-circle pt-4 visit-url" width="200"
               src="{{ asset('storage/' . $data->logo) }}" alt="{{ $data->name }}" data-url="{{ $data->url }}">
             <div class="card-body">
               <h4 class="card-title text-center text-capitalize height visit-url" data-url="{{ $data->url }}">
                 {{ $data->name }}</h4>
-              <p class="card-text justify description">{{ Str::limit($data->description, 110, '...') }}</p>
+              <p class="card-text justify description">{{ Str::limit($data->description, 120, '...') }}</p>
               <p class="d-none card-text justify content">{{ $data->description }}</p>
               <p class="card-text">
               <div class="d-flex justify-content-between align-items-center">
