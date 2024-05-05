@@ -16,11 +16,20 @@
           <form class="mt-4" action="{{ route('signin') }}" method="POST">
             @csrf
             <div class="row">
+              @if (session()->has('errors'))
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
               <div class="col-lg-12">
                 <div class="form-group mb-3">
-                  <label class="form-label text-dark" for="email">Email</label>
-                  <input class="form-control" id="email" name="email" type="text"
-                    placeholder="masukkan email anda" />
+                  <label class="form-label text-dark" for="email_or_username">Email/Username</label>
+                  <input class="form-control" id="email_or_username" name="email_or_username" type="text"
+                    placeholder="masukkan email/username anda" />
                 </div>
               </div>
               <div class="col-lg-12">

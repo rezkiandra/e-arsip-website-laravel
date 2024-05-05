@@ -24,20 +24,22 @@ class AuthController extends Controller
   public function signin(Request $request)
   {
     $credentials = $request->validate([
-      'email' => ['required', 'email'],
+      'email_or_username' => ['required', 'string'],
       'password' => ['required'],
     ]);
 
-    if (Auth::attempt($credentials)) {
-      $request->session()->regenerate();
+    $credentials = $request->only('email_or_username', 'password');
 
-      Alert::toast('Selamat datang di dashboard', 'success');
+    if (Auth::attempt(['email' => $credentials['email_or_username'], 'password' => $credentials['password']])) {
+      Alert::toast('Selamat datang', 'success');
       return redirect()->route('admin.dashboard');
+    } elseif (Auth::attempt(['name' => $credentials['email_or_username'], 'password' => $credentials['password']])) {
+      Alert::toast('Selamat datang', 'success');
+      return redirect()->route('admin.dashboard');
+    } else {
+      Alert::toast('Email/Username atau password salah', 'error');
+      return redirect()->back()->withInput()->withErrors(['email_or_username' => 'Email/Username atau password salah']);
     }
-
-    return back()->withErrors([
-      'email' => 'Email atau password salah',
-    ])->onlyInput('email');
   }
 
   public function signup(Request $request)
