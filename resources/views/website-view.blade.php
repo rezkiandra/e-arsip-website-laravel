@@ -20,7 +20,7 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-6 col-12">
+      <div class="col-lg-10 col-12">
         <div class="card">
           <div class="card-body">
             <div class="mb-4">
