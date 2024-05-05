@@ -106,15 +106,25 @@
         <div class="page-wrapper">
           @yield('content')
 
-          <footer class="footer text-center text-muted">
-            All Rights Reserved by Freedash. Developed by <a href="https://instagram.com/kyy.fe">Kyy
-              Studio</a>.
+          <footer class="footer text-center text-muted border-top">
+            <div class="d-flex justify-content-between">
+              <span>Copyrights &copy 2024 <span class="text-primary fw-medium">E-ARSIP</span>. All rights
+                reserved.</span>
+              <span>Anything</span>
+            </div>
           </footer>
         </div>
       </div>
     @else
-      <div class="page-wrapper">
-        @yield('content')
+      <div id="main-wrapper">
+        <div class="page-wrapper">
+          @yield('content')
+        </div>
+        <footer class="footer text-center text-muted border-top">
+          <marquee behavior="scroll" direction="right-to-left">
+            Selamat Datang Di Kumpulan Website
+          </marquee>
+        </footer>
       </div>
     @endif
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>

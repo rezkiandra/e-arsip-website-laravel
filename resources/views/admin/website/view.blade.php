@@ -26,7 +26,7 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-8 col-12">
+      <div class="col-lg-12 col-12">
         <div class="card">
           <div class="card-body">
             <div class="mb-4">
@@ -40,7 +40,6 @@
               <div class="media-body">
                 <p class="text-dark justify">{{ $website->description }}</p>
                 <div class="d-flex d-lg-flex justify-content-between align-items-center">
-                  <a href="{{ $website->url }}" class="">{{ $website->url }}</a>
                   <span class="badge bg-success rounded rounded-lg">Publish
                     {{ $website->created_at->diffForHumans() }}</span>
                 </div>

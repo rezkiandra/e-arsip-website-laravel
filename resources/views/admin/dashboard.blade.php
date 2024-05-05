@@ -1,8 +1,25 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css') }}">
+  <style>
+    .card:hover {
+      cursor: pointer;
+      transform: scale(.98);
+      transition: 0.5s;
+    }
+
+    .card {
+      transition: 0.5s;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+
+    .height {
+      min-height: 70px;
+    }
+  </style>
 @endpush
 @section('content')
   <div class="page-breadcrumb">
@@ -34,64 +51,29 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title mb-3">Daftar Website</h4>
-            <div class="table-responsive">
-              <table id="zero_config" class="table border table-bordered text-nowrap">
-                <thead class="align-middle">
-                  <tr>
-                    <th>Nama Aplikasi</th>
-                    <th>URL</th>
-                    <th>Deskripsi</th>
-                    <th>Logo</th>
-                    <th>Publish Pada</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody class="align-middle">
-                  @foreach ($website as $data)
-                    <tr>
-                      <td>{{ $data->name }}</td>
-                      <td><a href="{{ $data->url }}">{{ $data->url }}</a></td>
-                      <td>{{ Str::limit($data->description, 40) }}</td>
-                      <td>
-                        <img src="{{ asset('storage/' . $data->logo) }}" alt="{{ $data->name }}"
-                          class="img-fluid rounded-circle">
-                      </td>
-                      <td>{{ $data->created_at->format('d M Y') }}</td>
-                      <td class="d-flex align-items-center justify-content-center gap-1">
-                        <a href="{{ route('admin.website.view', $data->slug) }}"
-                          class="btn btn-sm btn-secondary rounded-circle">
-                          <i class="fa fa-eye"></i>
-                        </a>
-                        <a href="{{ route('admin.website.edit', $data->uuid) }}"
-                          class="btn btn-sm btn-warning rounded-circle">
-                          <i class="fa fa-edit"></i>
-                        </a>
-                        <form action="{{ route('admin.website.delete', $data->uuid) }}" method="POST">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-sm btn-danger rounded-circle">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                        </form>
-                      </td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
+      @foreach ($website as $data)
+        <div class="col-sm-6 col-lg-4">
+          <div class="card shadow shadow-lg" onclick="location.href='{{ route('admin.website.view', $data->slug) }}';">
+            <img class="text-center align-self-center img-fluid" src="{{ asset('storage/' . $data->logo) }}"
+              alt="{{ $data->name }}">
+            <div class="card-body">
+              <h4 class="card-title text-capitalize height">{{ $data->name }}</h4>
+              <p class="card-text justify">{{ Str::limit($data->description, 100) }}</p>
+              <p class="card-text">
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">
+                  <a href="{{ $data->url }}" class="">{{ $data->url }}</a>
+                </small>
+                <small>
+                  <span class="badge bg-success rounded rounded-lg">Publish
+                    {{ $data->created_at->diffForHumans() }}</span>
+                </small>
+              </div>
+              </p>
             </div>
           </div>
         </div>
-      </div>
+      @endforeach
     </div>
   </div>
 @endsection
-
-@push('scripts')
-  <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
-  <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
-@endpush

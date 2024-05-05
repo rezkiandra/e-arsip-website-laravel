@@ -38,7 +38,7 @@ class AdminController extends Controller
   public function storeWebsite(Request $request)
   {
     $validator = Validator::make($request->all(), [
-      'name' => 'required|max:30',
+      'name' => 'required|unique:websites,id',
       'url' => 'required|url',
       'description' => 'required',
       'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:512',
@@ -71,9 +71,9 @@ class AdminController extends Controller
   {
     $website = Website::where('uuid', $uuid)->first();
     $validator = Validator::make($request->all(), [
-      'name' => 'required|max:30',
+      'name' => 'required|unique:websites,id',
       'url' => 'required|url',
-      'description' => 'required|max:255',
+      'description' => 'required',
       'logo' => 'required_if:logo,null|image|mimes:jpeg,png,jpg,gif,svg,webp|max:512',
     ]);
 

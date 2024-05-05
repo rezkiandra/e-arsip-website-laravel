@@ -31,7 +31,6 @@
                 <thead class="align-middle">
                   <tr>
                     <th>Nama Aplikasi</th>
-                    <th>URL</th>
                     <th>Deskripsi</th>
                     <th>Logo</th>
                     <th>Publish Pada</th>
@@ -41,8 +40,12 @@
                 <tbody class="align-middle">
                   @foreach ($website as $data)
                     <tr>
-                      <td>{{ $data->name }}</td>
-                      <td><a href="{{ $data->url }}">{{ $data->url }}</a></td>
+                      <td>
+                        <div class="d-flex flex-column">
+                          <span>{{ $data->name }}</span>
+                          <small><a href="{{ $data->url }}">{{ $data->url }}</a></small>
+                        </div>
+                      </td>
                       <td>{{ Str::limit($data->description, 40) }}</td>
                       <td>
                         <img src="{{ asset('storage/' . $data->logo) }}" alt="{{ $data->name }}"
